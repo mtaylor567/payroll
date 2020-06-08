@@ -19,7 +19,7 @@ class ScheduleTest extends TestCase
 
         $list = Schedule::calculateList($testDate, $monthRowCount);
         
-        $this->assertInternalType('array', $list);
+        $this->assertIsArray($list);
         $this->assertEquals($monthRowCount + $labelRowCount, count($list));
 
         $expectedArray = [
@@ -38,10 +38,10 @@ class ScheduleTest extends TestCase
 
     /**
      * @test
-     * @expectedException \Exception
      */
     function calculateListInvalidInput1_ThrowsException()
     {
+        $this->expectException(\Exception::class);
         Schedule::calculateList(new \DateTime('99-99-99'), 5);
     }
 }
